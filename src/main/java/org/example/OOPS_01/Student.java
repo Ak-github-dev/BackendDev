@@ -8,6 +8,7 @@ public class Student {
     int age;
     String name;
     float psp;
+    int defaultCheck; //Default access modifier for OOPS2
 
     // Behaviours
     void changeBatch(){
@@ -15,7 +16,7 @@ public class Student {
     }
 
     void joinClass(){
-        System.out.println(name + " is Joining Class");
+        System.out.println(name + " is Joining Class" + defaultCheck);
     }
 
     void printDetails(){
@@ -23,6 +24,8 @@ public class Student {
         System.out.println("Age " + age);
         System.out.println("PSP " + psp);
     }
+
+
 }
 //Step 1 Completion: Created a blueprint of Student
 // No data yet
