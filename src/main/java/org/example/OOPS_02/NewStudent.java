@@ -6,6 +6,8 @@ public class NewStudent {
     protected double psp;
     public String name;
 
+
+
     private boolean coursePause(){
         System.out.println("Student" + name + " is paused");
         return false;
