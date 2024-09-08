@@ -1,4 +1,4 @@
-##Inheritance
+##Inheritance##
 
 OOP is based upon thinking of s/w systems in terms at day to day systems.
 
@@ -144,12 +144,136 @@ print("B")
 O/P: Error
 As chain is again broken due to parameterized constructor induced by developer
 
-Solution for this scenario is to use keyword super in class C:
+1 Solution for this scenario is to use keyword super in class C:
 class C extends B{
 public C(){
 super("Hello")
 print("C")
 }
 }
+
+2nd solution is just add one more constructor in B without args
+class B extends A{
+public B(String S){
+print("B")
+}
+public B(){
+print("B")
+}
+}
+
+
+So basically if we want to call a specific constructor of your parent, use #super# keyword
+
+
+
+
+
+##Polymorphism##
+
+Poly: many
+morph: forms
+
+Something which has many forms.
+
+		User
+Instructor	Mentor	Student
+
+printName(List<User> users){
+for (User u: users)
+print(u.username);
+}
+}
+
+
+(List<User> users)--> If we have List of user objects. This comes from collections package in java.
+
+So now which types of objects we are allowed to pass here?
+--> So we can use any of the forms as Instructor,Mentor, Student is also a User
+List<User> u = List.of(new User() or new Instructor(), new Mentor(), new Student()) we will not face any error
+
+We can write :
+User u = new user();
+User u = new Instructor();
+User u = new Mentor();
+also like, List<Integer> list = new ArrayList<>()
+
+A variable of type parent can hold a obj of child.
+
+Polymorphism allows us to hold object of child class in a variable of parent class.
+
+class A{
+int a,b;
+}
+
+class B extends A{
+int c;
+// as B is child of A it inherits a,b
+}
+
+class C extends B{
+int d;
+// as C is child of B it inherits a,b,c
+}
+
+Check what is allowed:
+
+example 1:
+A obj = new C();	// allowed as C is child of A, here obj is the variable and A is the datatype. So here it means we are are holding the object of child
+// but the datatype is of class A. Also child may or may not introduce its new members. A does not know what members child has.
+print(obj.a); // allowed as A knows about a its own members.
+print(obj.b); // allowed as A knows about b its own members.
+print(obj.c); // not allowed as A does not knows about its child B member c
+print(obj.d); // not allowed as A does not knows about its child C attribute d
+
+example 2:
+obj = new B(); // type of object has not changed it is still A
+print(obj.a); // allowed
+print(obj.b); // allowed
+print(obj.c); // not allowed. object will internally hold as it is of B,but as the datatype is A it will not be accessible.
+print(obj.d); // not allowed
+
+
+
+From a parent class variable which is holding a child object, we are allowed to access only members which are accessible by parent.
+
+Types of Polymorphism
+1. Compile time
+2. Runtime
+
+
+
+1. Compile time polymorphism:
+
+(During compilation) Achieved by Method overloading
+
+Method overloading allows us to create multiple methods with same name & different method signature in a class.
+
+Method signature:
+method_name(datatype_1, Datatype_2)
+
+Examples:
+1.
+void print(String s)
+void print()
+--> Allowed
+
+2.
+void print()
+void print(String s)
+--> Allowed
+
+3.
+void print(String s, int a)
+void print(String b, int d)
+--> not allowed
+
+4.
+void print(String a)
+String print(String b)
+-->Not allowed: even if return type is unique
+
+These checks will be checked at compile time by java compiler hence compile time polymorphism.
+
 
 
