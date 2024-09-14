@@ -155,7 +155,7 @@ A concept which is not really an entity i.e. it doesnt has attributes but has ab
 Interfaces--> Blueprint of behaviours
 
 interface Animal{
-void eat(); --> abstract method: where there is no implementation. We do not need(optional) to add "public abstarct" before void for these method. java will do it by itself
+void eat(); --> abstract method: where there is no implementation. We do not need(optional) to add "public abstract" before void for these method. java will do it by itself
 
 	void walk();
 
@@ -327,3 +327,197 @@ This whole above is called ADAPTER DESIGN PATTERN
 
 Hence the learning or
 principle is: Always code against an interface and never against an implementation.
+
+
+Enums: Are some fixed values grouped toogether.
+
+lambda functions:
+
+
+
+Revision:
+Interfaces: Blueprint of behaviours
+
+interface Animal{
+public abstract void swim();-->empty body
+}
+
+class Penguin implements Animal{ --> instead of extends and compiler will forces us to implement/complete abstract methods
+public void swim(){
+...
+}
+}
+
+Animal a = new Penguin(); --> Allowed
+
+Penguin p = new Penguin(); --> Allowed
+
+Animal ap = new Animal(); --> Not allowed(as compiler/java does not know the empty methods declared in the interface what to do with them.
+
+Check Interfaces DB_Implementation_Demo
+[Link]
+
+
+
+
+
+## Abstract
+
+Abstract Classes:
+
+- Sometimes we have an entity with some attributes and behaviour
+- But for some behaviours we dont have 100% clarity how they will work
+
+abstract class Animal{ --> here abstract keyword is important as we dont know what this method is for exactly
+String name;
+int age;
+void printName(){
+print (Name);
+}
+abstract void walk(); --> here abstract keyword is important as we dont know what this method is for exactly
+}
+
+Animal a = new Animal(); --> Not allowed: as it is an abstract class
+
+but we can surely create childs using extends keyword,
+and if we want this child to be a concrete class or not another abstract class then we have to override the method that is empty/abstract
+
+class Dog extends Animal{
+String breed;
+void walk(){	--> Override the walk method, hence making Dog class a concrete child, else we would have to use abstract keyword before class keyword
+print("Dog walking");
+}
+}
+
+
+
+
+|                     | Class | Interface | Abstract Class |
+|---------------------|-------|-----------|----------------|
+| Attributes          | Yes   | No        | Yes            |
+| Behaviours          | Yes   | No        | Yes            |
+| Abstract Behaviours | No    | Yes       | Yes            |
+
+
+Depending on the table we can think what to use when.
+
+Like if a scenario in OOPS we want to represent only abstract behaviours then we will use Interfaces.
+
+
+
+
+
+## Static Keyword:
+
+class Main{
+public	 	static		void		main		(String Args){}
+
+	access				return		function	Parameters		
+	modifier			type		name
+
+
+
+	}
+}
+
+		Variables
+static		Methods
+Class (builder Design Pattern Module)
+
+
+How do we access attribute of a class --> Object
+example:
+class Animal{
+String name;
+}
+Code:
+Animal a = new Animal();
+sout(a.name); --> we use a as the object to access the attribute
+
+Animal b = new Animal();
+sout(b.name); --> another object
+
+
+But if we use static then as below...
+
+Static keyword allows to us access member(attributes and behaviours) without an object
+
+Example 1:
+class ABC{
+static String s;
+static void print(){
+}
+}
+
+Code:
+ABC abc = new ABC();
+abc.s
+abc.print()
+
+sout(ABC.s) --> Direct access in format: classname.static member or behaviour name
+ABC.print();
+
+
+Static attributes/Behaviours are shared accross different objects.
+
+example 2:
+class ABC{
+String s;	--> non static
+static int age;	--> static , global
+public Animal(String name){
+this.name = name
+}
+}
+
+Animal one = new Animal("Dog");
+one.age = 5;			 --> allowed
+Animal two = new Animal("Cat");
+sout(one.name); 		// Dog
+sout(two.name); 		// Cat
+sout(two.age);			// 5	--> as age is global as we used static so here even though we did one.age=5 and if we change it liek two.age=10 then it will be latest
+
+
+Who call the main function?--> Compiler
+
+
+Static members are loaded as soon as a class is loaded.
+
+When to make variables static?
+-> Constants
+
+class Student{
+static String final UniversityName = "Vellore"; --> final to make it constant else it can be changed
+}
+
+
+Scenario 1:
+accessing static attribute in non static method:
+
+class Animal{
+String name;	--> name is at the object level or instance level
+static int age; 	--> age is at global level
+public void print Name(){
+sout(name);
+sout(age);	--> alloweed: we can access static attribute as it is global
+}
+}
+
+
+Scenario 2:
+class Animal{
+String name;		--> name is at the object level or instance level
+static int age; 	--> age is at global level
+public void print Name(){
+sout(name);
+sout(age);	--> alloweed: we can access static attribute as it is global
+}
+
+	public static void printAge(){
+		sout(age);	--> allowed as even if printage is global, age is also global level
+		sout(name);	--> not allowed: as name attribute is not global
+	}
+}
+
+
+Static variables/methods are allowed in non static methods
+But, not static variables/methods are not allowed in a static method.
